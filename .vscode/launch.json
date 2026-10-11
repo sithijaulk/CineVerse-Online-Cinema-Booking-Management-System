@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CinemaReservationApplication<cinema-reservation>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.se2030.cinema.CinemaReservationApplication",
+            "projectName": "cinema-reservation",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

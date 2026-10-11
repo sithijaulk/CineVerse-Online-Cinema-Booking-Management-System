@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CineVerse | Premium Cinema & IMAX Experience</title>
+  <meta name="description" content="Experience blockbusters in IMAX Laser, Dolby Atmos, and VIP luxury recliners. Reserve your seats online now.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body data-page="home">
+
+  <!-- Header / Navigation (No Admin Link in Header) -->
+  <nav id="mainNavbar" class="navbar navbar-expand-lg cinema-navbar fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/index.html">
+        <span class="brand-icon"><i class="bi bi-film"></i></span>
+        <span>CINE<span style="color: var(--gold-primary);">VERSE</span></span>
+      </a>
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse">
+        <i class="bi bi-list fs-2"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navCollapse">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-1">
+          <li class="nav-item"><a class="nav-link active" href="/index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#nowShowingSection">Now Showing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#upcomingSection">Coming Soon</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experiencesSection">Experiences</a></li>
+          <li class="nav-item"><a class="nav-link" href="/movies.html">All Movies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/my-bookings.html">My Tickets</a></li>
+        </ul>
+        <div id="navAuthArea" class="d-flex align-items-center gap-2">
+          <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle light/dark mode" aria-label="Toggle theme">
+            <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+          </button>
+          <a class="nav-link" href="/login.html"><i class="bi bi-person me-1"></i> Sign In</a>
+          <a class="btn btn-accent btn-accent-sm" href="/register.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Stage / Featured Spotlight Banner -->
+  <header id="heroStage" class="hero-stage">
+    <div id="heroBackdrop" class="hero-backdrop" style="background-image: url('https://image.tmdb.org/t/p/w1280/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg');"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="hero-badge-live mb-3">
+            <span class="pulse-dot"></span>
+            <span>NOW SHOWING IN IMAX LASER</span>
+          </div>
+          <h1 id="heroTitle" class="hero-title">Dune: Part Two</h1>
+          <div class="hero-meta-row">
+            <span id="heroRating" class="rating-badge">PG-13</span>
+            <span id="heroGenre" class="tag-badge tag-gold">Sci-Fi / Adventure / Action</span>
+            <span id="heroDuration" class="tag-badge"><i class="bi bi-clock me-1"></i> 166 MIN</span>
+            <span class="format-badge">IMAX 3D</span>
+            <span class="format-badge">DOLBY ATMOS</span>
+          </div>
+          <p id="heroSynopsis" class="hero-synopsis">
+            Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the universe's fate, he must prevent a terrifying future.
+          </p>
+          <div class="d-flex gap-3 flex-wrap align-items-center">
+            <a id="heroBookBtn" class="btn btn-accent btn-lg" href="/movie-details.html?id=1">
+              <i class="bi bi-ticket-perforated-fill fs-5"></i> Book Tickets Now
+            </a>
+            <button id="heroTrailerBtn" class="btn btn-glass btn-lg" type="button" onclick="openTrailer('https://www.youtube.com/watch?v=Way9Dexny3w', 'Dune: Part Two')">
+              <i class="bi bi-play-circle-fill text-danger fs-5"></i> Watch Trailer
+            </button>
+          </div>
+
+          <!-- Hero Spotlight Thumbnails Selector -->
+          <div class="hero-selector-wrapper">
+            <div class="hero-selector-title">Spotlight Blockbusters</div>
+            <div id="heroThumbList" class="hero-thumb-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Quick Booking Strip Widget -->
+  <section class="quick-book-strip container">
+    <div class="booking-strip-card glass-panel">
+      <div class="booking-strip-title">
+        <i class="bi bi-lightning-charge-fill"></i> Quick Ticket Booking
+      </div>
+      <form id="quickBookForm" class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label class="form-label small text-muted mb-1">Select Movie</label>
+          <select id="quickMovieSelect" class="form-select custom-select-dark" required>
+            <option value="" disabled selected>Choose a movie...</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label small text-muted mb-1">Cinema Location</label>
+          <select id="quickBranchSelect" class="form-select custom-select-dark">
+            <option value="">Any Cinema Branch</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label small text-muted mb-1">Date</label>
+          <select id="quickDateSelect" class="form-select custom-select-dark">
+            <!-- Dynamically populated dates -->
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-accent w-100 py-2">
+            <i class="bi bi-search"></i> Showtimes
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Now Showing Section -->
+  <section id="nowShowingSection" class="container py-5 mt-4">
+    <div class="section-header d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 reveal">
+      <div>
+        <div class="section-tag"><i class="bi bi-film"></i> IN THEATRES TODAY</div>
+        <h2 class="section-title">Now Showing</h2>
+        <p class="section-sub">Experience the latest world blockbusters on giant screens.</p>
+      </div>
+      <!-- Genre Filter Pills -->
+      <div class="filter-pill-group">
+        <span class="filter-pill active" data-genre="all">All Genres</span>
+        <span class="filter-pill" data-genre="Action">Action</span>
+        <span class="filter-pill" data-genre="Sci-Fi">Sci-Fi</span>
+        <span class="filter-pill" data-genre="Animation">Animation</span>
+        <span class="filter-pill" data-genre="Drama">Drama</span>
+      </div>
+    </div>
+
+    <!-- Movie Cards Grid -->
+    <div id="nowShowing" class="row g-4">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- Luxury Experiences Showcase -->
+  <section id="experiencesSection" class="container py-5 my-3">
+    <div class="section-header text-center reveal">
+      <div class="section-tag justify-content-center"><i class="bi bi-stars"></i> UNMATCHED TECHNOLOGY</div>
+      <h2 class="section-title">The CineVerse Experience</h2>
+      <p class="section-sub">State of the art audiovisual technology paired with maximum comfort.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 reveal delay-1">
+        <div class="experience-card">
+          <div class="experience-icon-wrap"><i class="bi bi-projector"></i></div>
+          <h4 class="experience-title">IMAX® with Laser</h4>
+          <p class="experience-desc">Crystal clear 4K laser projection delivering up to 40% more picture with breathtaking realism.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal delay-2">
+        <div class="experience-card">
+          <div class="experience-icon-wrap"><i class="bi bi-speaker"></i></div>
+          <h4 class="experience-title">Dolby Atmos® 360°</h4>
+          <p class="experience-desc">Precise acoustic soundscapes that move around you in three-dimensional space, plunging you into the action.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal delay-3">
+        <div class="experience-card">
+          <div class="experience-icon-wrap"><i class="bi bi-badge-hd"></i></div>
+          <h4 class="experience-title">VIP Luxury Recliners</h4>
+          <p class="experience-desc">Plush motorized leather recliners with personal charging ports, side tables, and in-seat waiter call buttons.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal delay-4">
+        <div class="experience-card">
+          <div class="experience-icon-wrap"><i class="bi bi-cup-straw"></i></div>
+          <h4 class="experience-title">Gourmet Concessions</h4>
+          <p class="experience-desc">Artisanal warm truffle popcorn, gourmet hand-crafted snacks, specialty mocktails, and fresh barista coffee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coming Soon Section -->
+  <section id="upcomingSection" class="container py-5">
+    <div class="section-header d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 reveal">
+      <div>
+        <div class="section-tag"><i class="bi bi-calendar-event"></i> ADVANCE BOOKINGS & PREVIEWS</div>
+        <h2 class="section-title">Coming Soon</h2>
+        <p class="section-sub">Get ready for the most anticipated releases arriving soon.</p>
+      </div>
+      <a href="/movies.html" class="btn btn-outline-gold btn-sm"><i class="bi bi-grid-3x3-gap"></i> Explore Full Schedule</a>
+    </div>
+
+    <div id="upcoming" class="row g-4">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- VIP Membership Perks Banner -->
+  <section class="container py-5">
+    <div class="membership-banner glass-panel reveal">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <div class="section-tag text-warning"><i class="bi bi-gem"></i> EXCLUSIVE PRIVILEGES</div>
+          <h2 class="display-6 fw-bold text-white mb-3">Join CineClub VIP Rewards</h2>
+          <p class="lead text-muted mb-4">
+            Earn loyalty points on every ticket and concession, unlock zero-fee online bookings, get free popcorn refills every Tuesday, and enjoy priority access to blockbuster midnight premieres.
+          </p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="/register.html" class="btn btn-accent"><i class="bi bi-person-plus-fill"></i> Become a Member for Free</a>
+            <a href="/movies.html" class="btn btn-glass">Learn More</a>
+          </div>
+        </div>
+        <div class="col-lg-4 text-center d-none d-lg-block">
+          <div class="p-4" style="background: rgba(255, 255, 255, 0.05); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);">
+            <i class="bi bi-trophy text-warning" style="font-size: 4rem;"></i>
+            <h4 class="mt-3 text-white">VIP CineClub Card</h4>
+            <div class="small text-muted">Complimentary with first online ticket reservation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Trailer Modal -->
+  <div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="trailerModalTitle">Trailer</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="ratio ratio-16x9">
+            <iframe id="trailerIframe" src="" title="Movie Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-World Footer (With Discreet Staff / Admin Link at Bottom) -->
+  <footer class="cinema-footer">
+    <div class="container">
+      <div class="row g-4 justify-content-between">
+        <div class="col-lg-4">
+          <a class="navbar-brand mb-3 d-inline-flex" href="/index.html">
+            <span class="brand-icon"><i class="bi bi-film"></i></span>
+            <span>CINE<span style="color: var(--gold-primary);">VERSE</span></span>
+          </a>
+          <p class="text-muted small pe-lg-4">
+            The premier entertainment destination for cinema enthusiasts. Experience unparalleled audiovisual brilliance in IMAX Laser, Dolby Atmos, and ultra-luxurious VIP auditoriums.
+          </p>
+          <div class="d-flex gap-3 fs-5 mt-3">
+            <a href="#" class="text-white-50"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white-50"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white-50"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="text-white-50"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#nowShowingSection">Now Showing</a></li>
+            <li><a href="#upcomingSection">Coming Soon</a></li>
+            <li><a href="/movies.html">All Movies</a></li>
+            <li><a href="/my-bookings.html">My Bookings</a></li>
+            <li><a href="#experiencesSection">Experiences</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="footer-col-title">Our Theatres</div>
+          <ul class="footer-links">
+            <li><a href="#quickBookForm">Colombo City Centre</a></li>
+            <li><a href="#quickBookForm">One Galle Face Mall</a></li>
+            <li><a href="#quickBookForm">Liberty Premier Hall</a></li>
+            <li><a href="#quickBookForm">Kandy City Centre</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="footer-col-title">Download Mobile App</div>
+          <p class="text-muted small">Book tickets, skip lines, and scan your e-tickets directly from your smartphone.</p>
+          <div class="d-flex flex-column gap-2">
+            <a href="#" class="btn btn-glass btn-sm justify-content-start text-start"><i class="bi bi-apple fs-5"></i> <div><small class="d-block" style="font-size: 0.65rem;">DOWNLOAD ON</small><strong>App Store</strong></div></a>
+            <a href="#" class="btn btn-glass btn-sm justify-content-start text-start"><i class="bi bi-google-play fs-5"></i> <div><small class="d-block" style="font-size: 0.65rem;">GET IT ON</small><strong>Google Play</strong></div></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+        <div>
+          &copy; 2026 CineVerse Theatres. All rights reserved. &bull; <a href="#" class="text-muted text-decoration-none">Privacy Policy</a> &bull; <a href="#" class="text-muted text-decoration-none">Terms of Service</a>
+        </div>
+        <!-- Discreet administrative access link -->
+        <div>
+          <a class="staff-discreet-link" href="/login.html"><i class="bi bi-shield-lock me-1"></i> Staff & Admin Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

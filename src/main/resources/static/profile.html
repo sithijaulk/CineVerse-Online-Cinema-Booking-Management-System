@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Profile | CineVerse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body data-page="profile">
+  <nav id="mainNavbar" class="navbar navbar-expand-lg cinema-navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/index.html"><span class="brand-icon"><i class="bi bi-film"></i></span><span>CINE<span style="color: var(--gold-primary);">VERSE</span></span></a>
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse"><i class="bi bi-list fs-2"></i></button>
+      <div class="collapse navbar-collapse" id="navCollapse">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-1"><li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="/movies.html">Movies</a></li><li class="nav-item"><a class="nav-link" href="/my-bookings.html">My Tickets</a></li></ul>
+        <div id="navAuthArea" class="d-flex align-items-center gap-2"><a class="nav-link" href="/login.html"><i class="bi bi-person me-1"></i> Sign In</a><a class="btn btn-accent btn-accent-sm" href="/register.html">Sign Up</a></div>
+      </div>
+    </div>
+  </nav>
+  <main class="container py-5"><div class="row justify-content-center"><div class="col-md-8 col-lg-6"><div class="glass-panel p-4 p-md-5 rounded-4 shadow-lg"><div class="section-tag"><i class="bi bi-person-vcard"></i> ACCOUNT SETTINGS</div><h1 class="h2 fw-bold text-white mb-2">My Profile</h1><p class="text-muted">Update the details used for your cinema reservations.</p><div id="profileMessage"></div><form id="profileForm" novalidate><div class="mb-3"><label class="form-label small text-muted" for="profileFullName">Full Name</label><input id="profileFullName" class="form-control custom-select-dark" name="fullName" minlength="2" maxlength="80" required></div><div class="mb-3"><label class="form-label small text-muted" for="profileEmail">Email Address</label><input id="profileEmail" class="form-control custom-select-dark" name="email" type="email" readonly></div><div class="mb-4"><label class="form-label small text-muted" for="profilePhone">Mobile Number</label><input id="profilePhone" class="form-control custom-select-dark" name="phone" pattern="[0-9]{10}" inputmode="tel" minlength="10" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10)" placeholder="0771234567" required></div><button class="btn btn-accent w-100" type="submit"><i class="bi bi-check-circle me-1"></i>Save Profile</button></form><button id="deactivateProfileBtn" class="btn btn-outline-danger w-100 mt-3" type="button"><i class="bi bi-person-x me-1"></i>Deactivate My Account</button></div></div></div></main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="/js/app.js"></script>
+</body>
+</html>

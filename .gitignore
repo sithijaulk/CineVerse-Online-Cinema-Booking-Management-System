@@ -1,0 +1,17 @@
+# Maven build output
+target/
+
+# Eclipse-generated duplicate workspace/build directory
+bin/
+
+# Runtime-uploaded poster files
+uploads/*
+!uploads/.gitkeep
+
+# Local environment and IDE files
+.env
+*.iml
+.classpath
+.project
+.settings/
+.vscode/*.log
